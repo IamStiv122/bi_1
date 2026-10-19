@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dashboard interactivo del Campeonato VTC Valorant con estadísticas de equipos, mapas y jugadores.">
+  <title>Dashboard VTC Valorant | DataClara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/dashboard.js" defer></script>
+</head>
+<body class="dashboard-page">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Navegación principal">
+      <a class="brand" href="index.html" aria-label="DataClara, inicio"><span class="brand-mark" aria-hidden="true"><i class="bi bi-bar-chart-line-fill"></i></span><span>Data<span class="brand-light">Clara</span></span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú de navegación"><i class="bi bi-list" aria-hidden="true"></i></button>
+      <div class="nav-links" id="nav-links">
+        <a class="nav-link" href="index.html">Fundamentos BI</a>
+        <a class="nav-link active" href="dashboard.html" aria-current="page">Dashboard VTC</a>
+        <a class="nav-cta" href="#clasificacion">Ver clasificación <i class="bi bi-arrow-down-right" aria-hidden="true"></i></a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido" class="container dashboard-main">
+    <section class="dashboard-heading">
+      <div>
+        <div class="breadcrumbs"><a href="index.html">Inicio</a><i class="bi bi-chevron-right" aria-hidden="true"></i><span>Dashboard VTC</span></div>
+        <span class="eyebrow"><span class="eyebrow-dot"></span> INTELIGENCIA COMPETITIVA</span>
+        <h1>Campeonato <span class="valorant-accent">VTC</span> Valorant</h1>
+        <p>Un vistazo a la competencia: rendimiento, mapas y protagonistas del torneo.</p>
+      </div>
+      <label class="stage-select-wrap" for="stage-select"><span><i class="bi bi-funnel" aria-hidden="true"></i> ETAPA</span><select id="stage-select" aria-label="Filtrar estadísticas por etapa"><option value="all">Torneo completo</option><option value="group">Fase de grupos</option><option value="playoffs">Playoffs</option></select></label>
+    </section>
+
+    <section class="kpi-grid" aria-label="Indicadores principales">
+      <article class="kpi-card"><div class="kpi-top"><span class="kpi-label">PARTIDAS JUGADAS</span><span class="kpi-icon"><i class="bi bi-controller" aria-hidden="true"></i></span></div><div class="kpi-value" id="kpi-matches">48</div><div class="kpi-trend"><i class="bi bi-arrow-up-right" aria-hidden="true"></i> <span>8 jornadas disputadas</span></div></article>
+      <article class="kpi-card"><div class="kpi-top"><span class="kpi-label">EQUIPOS</span><span class="kpi-icon"><i class="bi bi-people" aria-hidden="true"></i></span></div><div class="kpi-value" id="kpi-teams">8</div><div class="kpi-trend neutral"><i class="bi bi-dot" aria-hidden="true"></i> <span>En competencia</span></div></article>
+      <article class="kpi-card"><div class="kpi-top"><span class="kpi-label">JUGADOR MVP</span><span class="kpi-icon"><i class="bi bi-award" aria-hidden="true"></i></span></div><div class="kpi-value kpi-player" id="kpi-mvp">NØVA</div><div class="kpi-trend"><i class="bi bi-crosshair" aria-hidden="true"></i> <span id="kpi-mvp-detail">K/D 1.42 · Vortex</span></div></article>
+      <article class="kpi-card"><div class="kpi-top"><span class="kpi-label">MAPA MÁS JUGADO</span><span class="kpi-icon"><i class="bi bi-map" aria-hidden="true"></i></span></div><div class="kpi-value kpi-map" id="kpi-map">Ascent</div><div class="kpi-trend neutral"><i class="bi bi-bar-chart" aria-hidden="true"></i> <span id="kpi-map-detail">14 partidas</span></div></article>
+    </section>
+
+    <section class="dashboard-grid chart-grid" aria-label="Gráficas del torneo">
+      <article class="dashboard-card chart-card wins-card">
+        <div class="card-heading"><div><span class="chart-kicker">RESULTADOS</span><h2>Top equipos por victorias</h2></div><span class="card-icon"><i class="bi bi-bar-chart" aria-hidden="true"></i></span></div>
+        <p class="chart-subtitle">Victorias acumuladas en el torneo</p>
+        <div class="chart-canvas chart-canvas-tall"><canvas id="wins-chart" role="img" aria-label="Gráfica de barras del top cinco de equipos por victorias"></canvas></div>
+      </article>
+      <article class="dashboard-card chart-card maps-card">
+        <div class="card-heading"><div><span class="chart-kicker">PREFERENCIAS</span><h2>Mapas disputados</h2></div><span class="card-icon"><i class="bi bi-pie-chart" aria-hidden="true"></i></span></div>
+        <p class="chart-subtitle">Distribución de selecciones en el torneo</p>
+        <div class="chart-canvas chart-canvas-doughnut"><canvas id="maps-chart" role="img" aria-label="Gráfica de dona con la distribución de mapas jugados"></canvas></div>
+        <div class="map-legend" id="map-legend" aria-label="Leyenda de mapas"></div>
+      </article>
+      <article class="dashboard-card chart-card evolution-card">
+        <div class="card-heading"><div><span class="chart-kicker">TENDENCIA</span><h2>Evolución de kills</h2></div><span class="card-icon"><i class="bi bi-graph-up" aria-hidden="true"></i></span></div>
+        <p class="chart-subtitle">Kills acumuladas de los tres mejores equipos · jornadas 1-8</p>
+        <div class="chart-canvas chart-canvas-line"><canvas id="kills-chart" role="img" aria-label="Gráfica lineal de kills acumuladas por jornada para los tres mejores equipos"></canvas></div>
+      </article>
+    </section>
+
+    <section class="dashboard-grid lower-grid">
+      <article class="dashboard-card leaderboard-card" id="clasificacion">
+        <div class="card-heading"><div><span class="chart-kicker">CLASIFICACIÓN</span><h2>Tabla de posiciones</h2></div><span class="card-icon"><i class="bi bi-list-ol" aria-hidden="true"></i></span></div>
+        <p class="chart-subtitle">Rendimiento general de los equipos</p>
+        <div class="table-scroll"><table class="leaderboard-table"><thead><tr><th scope="col">POS</th><th scope="col">EQUIPO</th><th scope="col">PJ</th><th scope="col">PG</th><th scope="col">PP</th><th scope="col">WIN RATE</th><th scope="col">K/D</th></tr></thead><tbody id="leaderboard-body"></tbody></table></div>
+        <p class="table-note"><i class="bi bi-info-circle" aria-hidden="true"></i> PJ: partidas · PG: ganadas · PP: perdidas</p>
+      </article>
+      <article class="dashboard-card finalists-card">
+        <div class="card-heading"><div><span class="chart-kicker">CARA A CARA</span><h2>Finalistas</h2></div><span class="card-icon"><i class="bi bi-bullseye" aria-hidden="true"></i></span></div>
+        <p class="chart-subtitle">Comparativa de métricas clave</p>
+        <div class="chart-canvas chart-canvas-radar"><canvas id="finalists-chart" role="img" aria-label="Gráfica radar comparativa de estadísticas de los equipos finalistas"></canvas></div>
+        <div class="finalists-labels" id="finalists-labels"></div>
+      </article>
+    </section>
+
+    <section class="players-section">
+      <div class="players-heading"><div><span class="chart-kicker">TALENTO DESTACADO</span><h2>Mejores jugadores</h2><p>Quienes están marcando la diferencia en el servidor.</p></div><span class="players-count"><i class="bi bi-stars" aria-hidden="true"></i> TOP 4</span></div>
+      <div class="players-grid" id="players-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer dashboard-footer"><div class="container footer-inner"><a class="brand footer-brand" href="index.html"><span class="brand-mark"><i class="bi bi-bar-chart-line-fill" aria-hidden="true"></i></span><span>Data<span class="brand-light">Clara</span></span></a><p>Datos ficticios con fines demostrativos.</p><a href="index.html">Volver a Fundamentos BI <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a><span class="footer-copy">© <span data-current-year></span> DataClara</span></div></footer>
+</body>
+</html>
