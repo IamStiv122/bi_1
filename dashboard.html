@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/dashboard.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.4/dist/jspdf.plugin.autotable.min.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/dashboard.js" defer></script>
 </head>
@@ -25,6 +27,9 @@
         <a class="nav-link" href="index.html">Fundamentos BI</a>
         <a class="nav-link active" href="dashboard.html" aria-current="page">Dashboard VTC</a>
         <a class="nav-cta" href="#clasificacion">Ver clasificación <i class="bi bi-arrow-down-right" aria-hidden="true"></i></a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar a tema oscuro" aria-pressed="false">
+          <i class="bi bi-moon-stars" aria-hidden="true"></i><span>Tema oscuro</span>
+        </button>
       </div>
     </nav>
   </header>
@@ -37,7 +42,10 @@
         <h1>Campeonato <span class="valorant-accent">VTC</span> Valorant</h1>
         <p>Un vistazo a la competencia: rendimiento, mapas y protagonistas del torneo.</p>
       </div>
-      <label class="stage-select-wrap" for="stage-select"><span><i class="bi bi-funnel" aria-hidden="true"></i> ETAPA</span><select id="stage-select" aria-label="Filtrar estadísticas por etapa"><option value="all">Torneo completo</option><option value="group">Fase de grupos</option><option value="playoffs">Playoffs</option></select></label>
+      <div class="dashboard-controls">
+        <label class="stage-select-wrap" for="stage-select"><span><i class="bi bi-funnel" aria-hidden="true"></i> ETAPA</span><select id="stage-select" aria-label="Filtrar estadísticas por etapa"><option value="all">Torneo completo</option><option value="group">Fase de grupos</option><option value="playoffs">Playoffs</option></select></label>
+        <button class="button button-dark pdf-button" id="download-pdf" type="button"><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i> Descargar PDF</button>
+      </div>
     </section>
 
     <section class="kpi-grid" aria-label="Indicadores principales">

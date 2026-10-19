@@ -1,4 +1,4 @@
-.dashboard-page { background: #f8f8f8; }
+.dashboard-page { background: var(--page); }
 .dashboard-main { padding-block: 42px 70px; }
 .dashboard-heading { display: flex; align-items: end; justify-content: space-between; gap: 22px; margin-bottom: 26px; }
 .breadcrumbs { display: flex; align-items: center; gap: 8px; margin-bottom: 19px; color: var(--muted); font-size: 9px; }
@@ -12,6 +12,8 @@
 .stage-select-wrap > span { color: var(--muted); font-size: 8px; font-weight: 700; letter-spacing: .7px; }
 .stage-select-wrap > span i { margin-right: 4px; }
 .stage-select-wrap select { width: 100%; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 10px; font-weight: 600; cursor: pointer; }
+.dashboard-controls { display: flex; align-items: center; gap: 9px; }
+.pdf-button { min-height: 47px; font-size: 10px; white-space: nowrap; }
 .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; margin-bottom: 15px; }
 .kpi-card, .dashboard-card { border: 1px solid var(--border); border-radius: var(--radius); background: var(--white); box-shadow: 0 4px 18px rgba(33, 37, 41, .025); }
 .kpi-card { min-height: 126px; padding: 16px 17px; }
@@ -72,11 +74,18 @@
 .player-stats strong { color: var(--ink); }
 .dashboard-footer { background: var(--white); }
 
+:root[data-theme="dark"] .dashboard-page { background: var(--page); }
+:root[data-theme="dark"] .leaderboard-table td { color: #d2d6da; }
+:root[data-theme="dark"] .leaderboard-table tbody tr:first-child td { color: var(--ink); }
+:root[data-theme="dark"] .chart-canvas { color: var(--muted); }
+
 @media (max-width: 767px) {
   .dashboard-main { padding-block: 26px 50px; }
   .dashboard-heading { align-items: stretch; flex-direction: column; gap: 16px; }
   .dashboard-heading h1 { font-size: 30px; }
+  .dashboard-controls { align-items: stretch; flex-direction: column; }
   .stage-select-wrap { width: 100%; }
+  .pdf-button { justify-content: center; }
   .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
   .kpi-card { min-height: 118px; padding: 13px; }
   .kpi-label { font-size: 7px; }
